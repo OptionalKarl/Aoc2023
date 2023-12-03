@@ -1,7 +1,7 @@
 import csv
 import re
 compareset = []
-total = 0
+totalparts = 0
 def get_csv_file(file_path):
     try:
         mylist = []
@@ -31,34 +31,43 @@ def get_compare_set(dataset):
 def checkchar (rowindex,row):
     validnumber = False
     found = False
-    comparerow = compareset[rowindex]
     startindex = 0
+    total = 0
     for index,char in enumerate(row):
         if char.isnumeric() and found == False:
             startindex = index
             found = True
         if not char.isnumeric() and found == True:
-            endindex = index-1
+            endindex = index
+            validnumber = checkcompare(startindex, endindex,rowindex)
+            found = False
+        if index == len(row)-1 and found == True:
+            endindex = index
             validnumber = checkcompare(startindex, endindex,rowindex)
             found = False
         if validnumber:
-            total += int(row[startindex:endindex])
+            num = row[startindex:endindex]
+            total = total + int(num)
             validnumber = False
-
+    return total
 def checkcompare(startindex,endindex,rowindex):
+    length = len(compareset[0])
     if startindex > 0:
         startindex -= 1
-    if endindex < 9:
+    if endindex < length-1:
         endindex += 1
     if rowindex > 0:
         comparerow = compareset[rowindex-1]
+        comparestring = comparerow[startindex:endindex]
         if 's' in comparerow[startindex:endindex]:
             return True
-    if rowindex < len(compareset):
+    if rowindex < len(compareset) -1:
         comparerow = compareset[rowindex+1]
+        comparestring = comparerow[startindex:endindex]
         if 's' in comparerow[startindex:endindex]:
             return True
     comparerow = compareset[rowindex]
+    comparestring = comparerow[startindex:endindex]
     if 's' in comparerow[startindex:endindex]:
         return True
     return False
@@ -68,4 +77,5 @@ get_compare_set(dataset)
 
 # First item logic
 for index,row in enumerate(dataset):
-    checkchar(index,row)
+    totalparts += checkchar(index,row)
+print(totalparts)
