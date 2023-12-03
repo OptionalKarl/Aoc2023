@@ -1,16 +1,9 @@
-import csv
+from common import import_csv 
+import unittest
 
-def check_csv_file(file_path):
-    try:
-        my_list = []
-        calibrationscore = 0
-        total = 0
-
-        with open(file_path, 'r') as file:
-            for line in file:
-                my_list.append(line.strip())
-        
-        for item in my_list:
+class FirstAndLast:
+    def Loopandsum(Data):
+        for item in Data:
                 firstint = 0
                 secondint = 0
                 for char in item:
@@ -23,16 +16,22 @@ def check_csv_file(file_path):
                     secondint = firstint
                 calibrationscore = int(str(firstint) + str(secondint))
                 total += calibrationscore
-        return total
+        return total         
 
-                         
-                         
-                    
-    except FileNotFoundError:
-        print("File not found. Please provide a valid file path.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+
+class Test_FirstAndLast(unittest.TestCase):
+    def Onerowscoring4(self):
+        Testdata = ["1onetwo3"]
+        output = FirstAndLast.Loopandsum(Testdata)
+        self.assertEqual(output, 4)
+
+    def tworowscoringten(self):
+        Testdata = ["1onetwo3","3threefive3eight"]
+        output = FirstAndLast.Loopandsum(Testdata)
+        self.assertEqual(output, 10)
+
 
 
 file_path = 'VScode/AocSourceData/AoC2023Day1.txt'
-print (check_csv_file(file_path))
+Data = import_csv(file_path)
+print (FirstAndLast.Loopandsum(Data))

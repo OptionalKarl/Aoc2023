@@ -41,8 +41,6 @@ def findratio(starlocation,row, rownumber):
         result = 1
         for num in numbers:
             result *= num
-    print (result)
-    print (rownumber)
     return result
 
 def rowcheck(starlocation, row):
