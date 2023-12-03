@@ -45,5 +45,7 @@ file_path = 'VScode/AocSourceData/AoC2023Day2.txt'
 check_csv_file(file_path)
 output = check_game_win()
 
+print (output)
+
 
 
