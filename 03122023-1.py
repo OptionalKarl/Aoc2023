@@ -42,7 +42,7 @@ def checkchar (rowindex,row):
             validnumber = checkcompare(startindex, endindex,rowindex)
             found = False
         if index == len(row)-1 and found == True:
-            endindex = index
+            endindex = index+1
             validnumber = checkcompare(startindex, endindex,rowindex)
             found = False
         if validnumber:
@@ -53,9 +53,8 @@ def checkchar (rowindex,row):
 def checkcompare(startindex,endindex,rowindex):
     length = len(compareset[0])
     if startindex > 0:
-        startindex -= 1
-    if endindex < length-1:
-        endindex += 1
+        startindex -= 1 
+    endindex += 1
     if rowindex > 0:
         comparerow = compareset[rowindex-1]
         comparestring = comparerow[startindex:endindex]
