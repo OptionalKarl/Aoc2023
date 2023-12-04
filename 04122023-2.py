@@ -15,7 +15,8 @@ def cleanData(data):
     total = 0
     tidydata = []
     for index,row in enumerate(data):
-        row = row.replace('Card ' + str(index+1) +': ', '')
+        row = row.replace('Card  ' + str(index+1) +': ', '')
+        row = row.replace('Card   ' + str(index+1) +': ', '')
         winCounter = 0
         halves = splitcard(row)
         tidydata.append(halves)
