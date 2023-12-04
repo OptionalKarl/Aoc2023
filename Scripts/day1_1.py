@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, "./Aoc2023")
+
 from common import import_csv
 
 def Loopandsum(Data):
