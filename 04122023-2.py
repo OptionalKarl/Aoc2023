@@ -19,17 +19,15 @@ def cleanData(data):
         row = row.replace('Card   ' + str(index+1) +': ', '')
         winCounter = 0
         halves = splitcard(row)
-        tidydata.append(halves)
-    
+        tidydata.append(halves) 
     return tidydata
+
 def checkresults(data):
     total = 0
     stoprun = len(data)
     for index,halves in enumerate(data):
         if index >= stoprun:
             break
-        
-        
         scratchruns = [x for x in data if x == halves]
         for halves in scratchruns:
             winCounter = 1
@@ -41,12 +39,10 @@ def checkresults(data):
                     data.append(data[index + winCounter])
                     winCounter += 1
 
-    
     return len(data)
 file_path = 'Data/AoC2023Day4.txt'
 data = import_csv(file_path)
 data = cleanData(data)
-score = 0
 score = checkresults(data)
 
 print(len(data))
