@@ -3,7 +3,6 @@ import sys
 import os
 import sys
 
-sys.path.append('../Scripts')
 
 sys.path.append('/..')
 sys.path.append('D:/Storage/1 - Home Files/Solutions/Aoc2023/Scripts')

@@ -1,4 +1,5 @@
 import csv
+import sys
 
 def import_csv(filepath):
     mylist = []
@@ -45,4 +46,6 @@ def middlenumber(row,start):
         if forward > len(row) : isnumber = False
         if not row[forward].isnumeric(): isnumber = False
     return int(number)
+
+
 
