@@ -1,4 +1,7 @@
 from common import import_csv
+import time
+start_time = time.time()
+
 def getseeds (data):
         seeds = data[0].replace('seeds: ', '')
         seeds = seeds.split(" ")
@@ -53,7 +56,9 @@ temptohumidity = getmap('temperature-to-humidity map:',data)
 humiditytolocation = getmap('humidity-to-location map:',data)
 maps = [seedtosoil, soiltofertilizer, ferttowater, watertolight, lightotemp, temptohumidity, humiditytolocation]
 
-for seedpair in seedlist:
+for index,seedpair in enumerate(seedlist):
+    print( str(10 * index) + "\% complete")
+    print("--- %s seconds ---" % (time.time() - start_time))
     for seed in range(int(seedpair[0]),int(seedpair[1])):
         loc = seedjourney(seed)
         if minlocation != 0: minlocation = min(loc, minlocation)

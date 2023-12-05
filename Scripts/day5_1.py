@@ -26,12 +26,6 @@ def mapper(input_val, map_data):
             break
     return output 
 
-def seedjourney(seed):
-    location = seed
-    for mapper_func in maps:
-        location = mapper(location, mapper_func)
-    return location
-
 
 
 file_path = 'Data/AoC2023Day5.txt'
