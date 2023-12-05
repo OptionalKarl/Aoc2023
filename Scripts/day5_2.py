@@ -30,8 +30,7 @@ def getmap(mapname,data):
                 minval1 = int(maparray[1])
                 maxval1 = int(maparray[1]) + int(maparray[2]) - 1
                 minval2 = int(maparray[0])
-                maxval2 = int(maparray[0]) + int(maparray[2]) - 1
-                map = [minval1,maxval1,minval2,maxval2]
+                map = [minval1,maxval1,minval2]
                 maps.append(map)
                 startindex += 1
                 if startindex == len(data) - 1: mapcomplete = True
