@@ -1,9 +1,9 @@
 from common import import_csv
-
+import time
+start_time = time.time()
 def get_durations(row):
     row = row.replace('Time:      ','')
-    durations = row.split(' ')
-    distances = list(filter(bool, durations))
+    distances = list(filter(bool, row.replace().split('')))
     return distances
 def get_times(row):
        newtimes = []
@@ -29,17 +29,17 @@ def calcvalidtimes2(race_duration, top_score):
     return valid_times
 
 total1 = 1
-total2 = 1
+
 file_path = 'Data/LiveDataDay6.txt'
 data = import_csv(file_path)
-durations = get_durations(data[0])
-distance = get_times(data[1])
-
-for index,duration in enumerate(durations):
-
-    total1 *= calcvalidtimes(int(duration),int(distance[index]))
 
 
+distance = 377117112241505
+duration = 51699878
+
+total1 = calcvalidtimes(duration,distance)
+
+print("--- %s seconds ---" % (time.time() - start_time))
 print(total1)
 
 
