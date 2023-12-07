@@ -22,7 +22,7 @@ twopairs = re.compile(r'^(?:(\w)\1)(?:(?:(?!\1)(\w))\2){2}(?:(?:(?!\1)(?!\2)(\w)
 onepair = re.compile(r'^.*(\w)\1.*$')
 
 
-for each hand in hands
+for hand in hands
 
 
 
