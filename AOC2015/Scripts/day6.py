@@ -1,42 +1,34 @@
-from common import import_csv
-day = 6
-file_path = 'D:/Storage/1 - Home Files/Solutions/Aoc2023/AOC2015/data/day' + str(day) + '.txt'
+import sys
+filepath = 'D:/Storage/1 - Home Files/Solutions/Aoc2023/AOC2015/data/day6.txt'
 
-data = import_csv(file_path)
+import re
 
-Instructions = []
-action = [] 
-rows = 999
-columns = 999
+grid = [[0 for x in range(1000)] for x in range(1000)]
+tot_brightness = 0
 
-# Method 1: Using list comprehension
-lights = [[False for _ in range(columns)] for _ in range(rows)]
+with open(filepath) as f:
+    lines = f.readlines()
 
-for row in data:
-    inst = []
-    if "turn on" in row: action.append(True)
-    elif "turn off" in row: action.append(False)
-    elif "toggle" in row: action.append("switch")
-    references = row.replace('turn on ','').replace('through ','').replace('turn off ','').replace('toggle ','').split(' ')
-    for ref in references:
-        inst.extend(map(int, ref.split(',')))
-    Instructions.append(inst)
+    for line in lines:
+        m = re.search('([a-z])\s(\d+),(\d+)[a-z\s]+(\d+),(\d+)', line)
 
-def count_instances(array_2d, element):
-    count = 0
-    for row in array_2d:
-        count += row.count(element)
-    return count
+        action = m.group(1)
+        x1 = int(m.group(2))
+        y1 = int(m.group(3))
+        x2 = int(m.group(4))
+        y2 = int(m.group(5))
 
+        for x in range(x1, x2 + 1):
+            for y in range(y1, y2 + 1):
+                if 'n' == action:
+                    tot_brightness += 1
+                    grid[x][y] += 1
+                elif 'f' == action:
+                    if grid[x][y] != 0:
+                        tot_brightness -= 1
+                        grid[x][y] -= 1
+                elif 'e' == action:
+                    tot_brightness += 2
+                    grid[x][y] += 2
 
-for index,instr in enumerate(Instructions):
-    x = int(0)
-    y = int(0)
-    for x in range(instr[0],instr[2]+1):
-        for y in range(instr[1],instr[3]+1):
-            if action[index] != "switch": lights[x][y] = bool(action[index])
-            else: lights[x][y] = not lights[x][y]
-
-countTrue = count_instances(lights,True)
-
-print(countTrue)
+print('Part 2:', tot_brightness)
