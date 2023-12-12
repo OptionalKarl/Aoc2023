@@ -49,3 +49,7 @@ def middlenumber(row,start):
 
 
 
+x = 123
+
+bitwise_complement = ~x
+print(bitwise_complement)
