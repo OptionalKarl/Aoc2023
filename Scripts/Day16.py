@@ -1,25 +1,6 @@
-from common import import_csv
-class Color:
-    RED = '\033[91m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    BLUE = '\033[94m'
-    RESET = '\033[0m'  # Reset to default color
+from common import import_csv, print_grid
 
-def print_grid(x,y, current):
-    for j in range(y):
-        for i in range(x):
-            coord = grid[j][i]
-            if i == current[0] and j == current[1]:
-                color = Color.BLUE
-                 # Highlight current position with [*]
-            else:
-                color = Color.RED
-            print(f"{color}{coord}", end=" ")    
-        print()  # Move to the next line after each row
-    print("________________________")
-    print()
-    print()
+
 def blanktile (pos,dir):
     if dir == "r": pos[0] += 1
     elif dir == "l": pos[0] += -1
@@ -78,7 +59,7 @@ def beam (poweredtiles, x = 0, y = 0,dir = "r"):
         elif current == "/": pos, dir = forwardangle(pos,dir)
         elif current == "\\" : pos, dir = backangle(pos,dir)
         else: pos = blanktile(pos,dir)
-        # print_grid(len(grid[0]),len(grid),pos)
+        # print_grid(len(grid[0]),len(grid),pos,grid)
 
 def Multibeam(x,y,dir):
 
